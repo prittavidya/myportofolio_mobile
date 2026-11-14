@@ -1,30 +1,44 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:myportofolio_mobile/main.dart';
+import 'package:myportofolio_mobile/widgets/info_card.dart';
+import 'package:myportofolio_mobile/widgets/item_card.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('Halaman utama menampilkan identitas pemilik portofolio',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.byType(InfoCard), findsNWidgets(3));
+    expect(find.text('2506539265'), findsOneWidget);
+    expect(find.text('Joanna Prittavidya Putri Arianto'), findsOneWidget);
+    expect(find.text('PBP A'), findsOneWidget);
   });
+
+  testWidgets('Setiap tombol aksi memiliki warna latar yang berbeda',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    expect(find.byType(ItemCard), findsNWidgets(3));
+
+    final colors = tester
+        .widgetList<ItemCard>(find.byType(ItemCard))
+        .map((card) => card.item.color)
+        .toSet();
+    expect(colors.length, 3);
+  });
+
+  for (final name in ['Lihat Proyek', 'Tambah Proyek', 'Logout']) {
+    testWidgets('Menekan tombol $name memunculkan SnackBar yang sesuai',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(const MyApp());
+
+      await tester.tap(find.text(name));
+      await tester.pump();
+
+      expect(find.byType(SnackBar), findsOneWidget);
+      expect(find.text('Kamu telah menekan tombol $name!'), findsOneWidget);
+    });
+  }
 }
