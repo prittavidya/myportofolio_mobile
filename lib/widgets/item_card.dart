@@ -26,7 +26,22 @@ class ItemCard extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!"),
+                // Warna SnackBar mengikuti warna tombol agar umpan balik
+                // terasa terhubung dengan tombol yang ditekan.
+                backgroundColor: item.color,
+                behavior: SnackBarBehavior.floating,
+                content: Row(
+                  children: [
+                    Icon(item.icon, color: Colors.white),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        "Kamu telah menekan tombol ${item.name}!",
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
         },

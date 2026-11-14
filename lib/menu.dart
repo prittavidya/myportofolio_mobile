@@ -36,19 +36,26 @@ class MyHomePage extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
-      body: Padding(
+      // SingleChildScrollView mencegah overflow pada layar kecil
+      // atau saat orientasi landscape.
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Baris kartu identitas pemilik portofolio.
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                InfoCard(title: 'NPM', content: npm),
-                InfoCard(title: 'Name', content: nama),
-                InfoCard(title: 'Class', content: kelas),
-              ],
+            // Baris kartu identitas pemilik portofolio. IntrinsicHeight +
+            // stretch membuat ketiga kartu setinggi kartu tertinggi
+            // (kartu Name bisa lebih tinggi karena nama yang panjang).
+            IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  InfoCard(title: 'NPM', content: npm),
+                  InfoCard(title: 'Name', content: nama),
+                  InfoCard(title: 'Class', content: kelas),
+                ],
+              ),
             ),
             const SizedBox(height: 16.0),
             Center(
@@ -64,9 +71,11 @@ class MyHomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Grid tombol aksi, tiga kolom per baris.
+                  // Grid tombol aksi, tiga kolom per baris. Scroll grid
+                  // dimatikan karena sudah ditangani SingleChildScrollView.
                   GridView.count(
-                    primary: true,
+                    primary: false,
+                    physics: const NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.all(20),
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
