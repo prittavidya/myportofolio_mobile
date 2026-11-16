@@ -3,11 +3,6 @@ import 'package:myportofolio_mobile/models/item_homepage.dart';
 import 'package:myportofolio_mobile/widgets/info_card.dart';
 import 'package:myportofolio_mobile/widgets/item_card.dart';
 
-/// Halaman utama aplikasi MyPortfolio.
-///
-/// Menampilkan tiga [InfoCard] berisi identitas pemilik portofolio dan
-/// sebuah grid berisi [ItemCard] untuk setiap aksi portofolio.
-/// Widget ini stateless karena seluruh datanya konstan.
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
@@ -15,8 +10,6 @@ class MyHomePage extends StatelessWidget {
   final String nama = "Joanna Prittavidya Putri Arianto";
   final String kelas = "PBP A";
 
-  /// Daftar tombol aksi. Warna tiap tombol didefinisikan langsung di model
-  /// sehingga [ItemCard] tidak perlu logika pewarnaan sendiri.
   final List<ItemHomepage> items = const [
     ItemHomepage("Lihat Proyek", Icons.folder, Colors.blue),
     ItemHomepage("Tambah Proyek", Icons.add_circle, Colors.green),

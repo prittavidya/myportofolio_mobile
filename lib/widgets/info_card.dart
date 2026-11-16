@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
-/// Kartu kecil yang menampilkan satu informasi profil pemilik portofolio,
-/// misalnya NPM, nama, atau kelas.
 class InfoCard extends StatelessWidget {
-  /// Judul kartu (contoh: "NPM").
   final String title;
-
-  /// Isi informasi yang ditampilkan di bawah judul.
   final String content;
 
   const InfoCard({

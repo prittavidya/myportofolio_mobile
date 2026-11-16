@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/models/item_homepage.dart';
 
-/// Kartu tombol aksi di halaman utama.
-///
-/// Warna latar, ikon, dan label diambil dari [item]. Saat ditekan,
-/// kartu menampilkan SnackBar berisi nama tombol yang ditekan.
 class ItemCard extends StatelessWidget {
-  /// Data tombol yang ditampilkan oleh kartu ini.
   final ItemHomepage item;
 
   const ItemCard(this.item, {super.key});
