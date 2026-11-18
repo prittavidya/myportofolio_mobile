@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:myportofolio_mobile/main.dart';
+import 'package:myportofolio_mobile/project_form.dart';
 import 'package:myportofolio_mobile/widgets/info_card.dart';
 import 'package:myportofolio_mobile/widgets/item_card.dart';
 
@@ -41,4 +42,15 @@ void main() {
       expect(find.text('Kamu telah menekan tombol $name!'), findsOneWidget);
     });
   }
+
+  testWidgets('Tombol Tambah Proyek membuka halaman ProjectFormPage',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    await tester.tap(find.text('Tambah Proyek'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(ProjectFormPage), findsOneWidget);
+    expect(find.text('Add Project Form'), findsOneWidget);
+  });
 }
