@@ -15,23 +15,33 @@ class LeftDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.indigo,
             ),
+            // Tinggi DrawerHeader tetap, jadi judul diperkecil otomatis dan
+            // deskripsi dipotong agar tidak overflow di layar sempit atau
+            // saat ukuran font sistem diperbesar.
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'My Portfolio',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'My Portfolio',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 SizedBox(height: 10),
-                Text(
-                  'Explore personal projects and experiences!',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
+                Flexible(
+                  child: Text(
+                    'Explore personal projects and experiences!',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
