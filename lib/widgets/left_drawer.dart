@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:myportofolio_mobile/screens/achievement_list_screen.dart';
 import 'package:myportofolio_mobile/screens/experience_form.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
@@ -50,6 +51,19 @@ class LeftDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const MyHomePage()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.emoji_events_outlined),
+            title: const Text('Achievements'),
+            // Navigasi ke daftar achievement dari API (publik, tanpa login)
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AchievementListScreen(),
+                ),
               );
             },
           ),

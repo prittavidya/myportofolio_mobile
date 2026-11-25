@@ -32,7 +32,7 @@ void main() {
   });
 
   for (final name in [
-    'Lihat Proyek',
+    'Lihat Achievement',
     'Tambah Proyek',
     'Tambah Pengalaman',
     'Logout',
