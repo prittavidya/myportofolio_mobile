@@ -1,16 +1,17 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:myportofolio_mobile/main.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
 import 'package:myportofolio_mobile/widgets/info_card.dart';
 import 'package:myportofolio_mobile/widgets/project_card.dart';
+
+import 'test_helpers.dart';
 
 void main() {
   testWidgets('Halaman utama menampilkan identitas pemilik portofolio', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(buildTestApp());
 
     expect(find.byType(InfoCard), findsNWidgets(3));
     expect(find.text('2506539265'), findsOneWidget);
@@ -21,7 +22,7 @@ void main() {
   testWidgets('Setiap tombol aksi memiliki warna latar yang berbeda', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(buildTestApp());
 
     final cards = tester.widgetList<ItemCard>(find.byType(ItemCard)).toList();
     expect(cards.length, 4);
@@ -39,7 +40,7 @@ void main() {
     testWidgets('Menekan tombol $name memunculkan SnackBar yang sesuai', (
       WidgetTester tester,
     ) async {
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(buildTestApp());
 
       await tester.ensureVisible(find.text(name));
       await tester.tap(find.text(name));
@@ -53,7 +54,7 @@ void main() {
   testWidgets('Tombol Tambah Proyek membuka halaman ProjectFormPage', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(buildTestApp());
 
     await tester.tap(find.text('Tambah Proyek'));
     await tester.pumpAndSettle();

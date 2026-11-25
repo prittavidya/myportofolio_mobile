@@ -1,9 +1,10 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:myportofolio_mobile/main.dart';
 import 'package:myportofolio_mobile/screens/experience_form.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
+
+import 'test_helpers.dart';
 
 Finder _field(String label) => find.widgetWithText(TextFormField, label);
 
@@ -38,7 +39,7 @@ void main() {
     testWidgets(
       'Kartu Tambah Pengalaman membuka form dan Back kembali ke menu',
       (WidgetTester tester) async {
-        await tester.pumpWidget(const MyApp());
+        await tester.pumpWidget(buildTestApp());
 
         await tester.ensureVisible(find.text('Tambah Pengalaman'));
         await tester.tap(find.text('Tambah Pengalaman'));
@@ -60,7 +61,7 @@ void main() {
     testWidgets(
       'Drawer membuka form, lalu opsi Home kembali ke halaman utama',
       (WidgetTester tester) async {
-        await tester.pumpWidget(const MyApp());
+        await tester.pumpWidget(buildTestApp());
 
         await _openDrawerAndTap(tester, 'Add Experience');
         expect(find.byType(ExperienceFormPage), findsOneWidget);
