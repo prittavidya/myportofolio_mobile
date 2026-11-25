@@ -104,7 +104,8 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
     if (value == null || value.trim().isEmpty) return null;
 
     final uri = Uri.tryParse(value.trim());
-    final isValid = uri != null &&
+    final isValid =
+        uri != null &&
         (uri.scheme == 'http' || uri.scheme == 'https') &&
         uri.host.isNotEmpty;
     if (!isValid) {
@@ -135,9 +136,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
       labelText: label,
       hintText: hint,
       suffixIcon: suffix,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(5.0),
-      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
     );
   }
 
@@ -261,10 +260,12 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                 decoration: _decoration("Kategori"),
                 initialValue: _category,
                 items: _categories.entries
-                    .map((entry) => DropdownMenuItem(
-                          value: entry.key,
-                          child: Text(entry.value),
-                        ))
+                    .map(
+                      (entry) => DropdownMenuItem(
+                        value: entry.key,
+                        child: Text(entry.value),
+                      ),
+                    )
                     .toList(),
                 onChanged: (String? newValue) {
                   setState(() {

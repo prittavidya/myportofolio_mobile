@@ -12,9 +12,7 @@ class LeftDrawer extends StatelessWidget {
       child: ListView(
         children: [
           const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.indigo,
-            ),
+            decoration: BoxDecoration(color: Colors.indigo),
             // Tinggi DrawerHeader tetap, jadi judul diperkecil otomatis dan
             // deskripsi dipotong agar tidak overflow di layar sempit atau
             // saat ukuran font sistem diperbesar.
@@ -38,10 +36,7 @@ class LeftDrawer extends StatelessWidget {
                     'Explore personal projects and experiences!',
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                    ),
+                    style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
               ],
@@ -54,9 +49,7 @@ class LeftDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const MyHomePage(),
-                ),
+                MaterialPageRoute(builder: (context) => const MyHomePage()),
               );
             },
           ),

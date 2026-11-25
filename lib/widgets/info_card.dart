@@ -4,11 +4,7 @@ class InfoCard extends StatelessWidget {
   final String title;
   final String content;
 
-  const InfoCard({
-    super.key,
-    required this.title,
-    required this.content,
-  });
+  const InfoCard({super.key, required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +16,7 @@ class InfoCard extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 8.0),
             Text(content, textAlign: TextAlign.center),
           ],
