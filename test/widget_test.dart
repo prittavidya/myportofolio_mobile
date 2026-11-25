@@ -1,7 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:myportofolio_mobile/screens/project_form.dart';
+import 'package:myportofolio_mobile/screens/login_screen.dart';
 import 'package:myportofolio_mobile/widgets/info_card.dart';
 import 'package:myportofolio_mobile/widgets/project_card.dart';
 
@@ -33,7 +33,7 @@ void main() {
 
   for (final name in [
     'Lihat Achievement',
-    'Tambah Proyek',
+    'Tambah Achievement',
     'Tambah Pengalaman',
     'Logout',
   ]) {
@@ -51,15 +51,26 @@ void main() {
     });
   }
 
-  testWidgets('Tombol Tambah Proyek membuka halaman ProjectFormPage', (
+  testWidgets('Tombol Tambah Achievement meminta login jika belum login', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(buildTestApp());
 
-    await tester.tap(find.text('Tambah Proyek'));
+    await tester.tap(find.text('Tambah Achievement'));
     await tester.pumpAndSettle();
 
-    expect(find.byType(ProjectFormPage), findsOneWidget);
-    expect(find.text('Add Project Form'), findsOneWidget);
+    expect(find.byType(LoginScreen), findsOneWidget);
+  });
+
+  testWidgets('Tombol Logout saat belum login memberi tahu pengguna', (
+    WidgetTester tester,
+  ) async {
+    await tester.pumpWidget(buildTestApp());
+
+    await tester.ensureVisible(find.text('Logout'));
+    await tester.tap(find.text('Logout'));
+    await tester.pump();
+
+    expect(find.text('Kamu belum login.'), findsOneWidget);
   });
 }
